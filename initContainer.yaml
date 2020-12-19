@@ -1,0 +1,27 @@
+Kind: Pod
+apiVersion: v1
+metadata:
+  name: initcontainer
+spec:
+  volumes:
+    - name: shared-dir
+      emptyDir: {}
+  containers:
+    - name: myfirstinitcont
+      image: nginx
+      ports:
+        - containerPod: 80
+      imagePullPolicy: IfNotPresent
+      volumeMount:
+        - name: shared-dir
+          mountPath: /app/src
+  initcontainers:
+  - name: helper
+    image: nginx
+    command:
+    - git
+    - clone
+    - https://github.com/laherasif
+    volumMounts:
+      - name: shared-dir
+        mountPath: /app/initcont

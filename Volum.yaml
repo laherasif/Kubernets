@@ -1,0 +1,28 @@
+Kind: Pod
+apiVersion: v1
+metadata:
+ name: myfirstVolum
+ annotation:
+  createdBy: laherasif
+  email: laherasif@gmail.com
+spec:
+ volumes:
+   - name: shared-dir
+     emptyDir: {}
+ containers:
+ - name: volumcont
+   image: aamirpinger/hi
+   ports:
+   - containerPod: 80
+   imagePullPolicy: IfNotPresent
+   volumMounts:
+     - name: shared-dir
+       mountpath: /app/cont1
+ - name: volumcont
+   image: nginx
+   ports:
+   - containerPod: 80
+   imagePullPolicy: IfNotPresent
+   volumMounts:
+     - name: shared-dir
+       mountpath: /src/cont2

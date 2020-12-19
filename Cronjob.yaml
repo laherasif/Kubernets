@@ -1,0 +1,20 @@
+Kind: CronJob
+apiVersion: bactch/v1beta1
+metadata:
+- name: myfirtsCronJob
+spec:
+  schedule: "*,*,*,*,*"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: Periodic-bactch-job
+        spec:
+          restartPloicy: OnFailur
+          containers:
+          - name: main
+            image: docker/whalesay
+            command: ["cowsay " , " this is example of Cronjob on zoom"]
+
+ 

@@ -1,0 +1,22 @@
+Kind: Job
+apiVersion: betch1
+metadata:
+- name: myfirstJob
+  labels: app
+  annotation:
+    type: backend
+    env: production
+spec:
+ restartPolicy: OnFailur
+ containers:
+ - name: myfirstJobContainer
+   image: aamirpinger/helloword
+   imagePullPolicy: IfNotPresent
+   ports:
+     - containerPort: 80
+ restartPolicy: OnFailur
+ - name: myfirstJobContainer
+   image: aamirpinger/hi
+   imagePullPolicy: IfNotPresent
+   ports:
+     - containerPort: 80

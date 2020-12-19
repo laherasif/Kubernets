@@ -1,0 +1,25 @@
+Kind: Pod
+apiVersion: v1
+metadata:
+ name: myfirstpodwithlifeness
+ lables:
+  type: frondend
+  env: development
+spec:
+ conatiners:
+ - name: myfirstpodlifeness
+   image: aamirpinger/hi
+   ports:
+   - containerPort: 80
+   imagePolicy: IfNotPresent
+   livenessProbe:
+    # {  HTTP GET , TCP , EXEC  }
+     exec: 
+       command:
+       - ls
+    #  {  my himself to set the propertes in liveneshold}
+     failureThreshold: 5
+     PeriodSeconds: 20
+     successThreshold: 3
+     timeoutSeconds: 1
+     initialDelaySeconds: 40

@@ -1,0 +1,27 @@
+Kind: Pod
+apiVersion: v1
+metadata:
+ name: myfirstread
+ labels:
+  type: backend
+  env: production
+ annotation:
+  createdBy: laherasif
+  email: laherasif@gmail.com
+spec:
+ containers:
+- name: myfirstreadnesspod
+  image: aamirpinger/hellowold
+  ports:
+  - containerPort: 80
+  imagePullPolicy: IfNotPresent
+  restartPolicy: OnFailur
+  readinessProbe:
+    httpGet:
+      port: 80
+      path: /backend/
+  failureThreshod: 5
+  periodSeconds: 10
+  successThreshod: 2
+  timeoutSeconds: 1
+  initialDelaySeconds: 30
